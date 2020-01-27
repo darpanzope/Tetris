@@ -125,7 +125,7 @@ Piece.prototype.moveLeft = function(){
 
 // rotate the piece
 
-/*Piece.prototype.rotate = function(){
+Piece.prototype.rotate = function(){
   let nextPattern = this.tetromino[(this.tetrominoN + 1)%this.tetromino.length];
   let kick = 0;
   
@@ -146,7 +146,7 @@ Piece.prototype.moveLeft = function(){
       this.activeTetromino = this.tetromino[this.tetrominoN];
       this.draw();
   }
-}*/
+}
 
 let score = 0;
 
@@ -235,9 +235,9 @@ function CONTROL(event){
   if(event.keyCode == 37){
       p.moveLeft();
       dropStart = Date.now();
-  //}else if(event.keyCode == 38){
-   //   p.rotate();
-   //   dropStart = Date.now();
+  }else if(event.keyCode == 38){
+      p.rotate();
+      dropStart = Date.now();
   }else if(event.keyCode == 39){
       p.moveRight();
       dropStart = Date.now();
