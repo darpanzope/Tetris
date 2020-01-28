@@ -1,15 +1,20 @@
 <html>
 <head>
 	<title>Tetris Game JS</title>
+	<link rel="stylesheet" type="text/css" href="tetris.css">
 </head>
 <body>
-	<br><h1 align="center">Tetris</h1>
+	<span class="cen" id="gameover">    
+		<h1>Game Over</h1>
+		<br><button onclick="location.reload()">Restart</button><br>
+	</span>
+	<br><h1 align="center" id="heading">Tetris</h1>
 	<center><canvas id="tetris" width="200" height="400"></canvas><center>
-	<div>
+	<div id="main">
 		<b>Score</b> : <div id="score" style="font-size:50px;"><b>0<b></div>
 	</div>
 	<script src="../controller/pieces.js"></script>
 	<script src="../controller/tetris.js"></script>
-	<br><button onclick="location.reload()">Restart</button>
+	<br><button id="res" onclick="location.reload()">Restart</button>
 </body>
 </html>
