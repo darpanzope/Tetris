@@ -39,15 +39,16 @@ function drawBoard(){
 
 drawBoard();
 
-// the pieces with default red color
+// the pieces 
 
 const PIECES = [Z,S,T,O,L,I,J];
 
 // generate random pieces
 
 function randomPiece(){
-	let r = randomN = Math.floor(Math.random() * PIECES.length) // 0 -> 6
-  return new Piece( PIECES[r],'#'+Math.random().toString(16).substr(-6));
+	let r = randomN = Math.floor(Math.random() * PIECES.length) // random number from 0 to 6
+	let randomColor = '#'+Math.random().toString(16).substr(-6); // random color in hex format
+  return new Piece( PIECES[r],randomColor);
 }
 
 let p = randomPiece();
@@ -199,7 +200,7 @@ Piece.prototype.lock = function(){
   drawBoard();
   
   // update the score
-  scoreElement.innerHTML = score;
+  scoreElement.innerHTML = "<b>"+score+"</b>";
 }
 
 // collision function
@@ -230,13 +231,6 @@ Piece.prototype.collision = function(x,y,piece){
 		}
   }
   return false;
-}
-
-function loop() {
-	if (gamePaused) return; // stop looping
-	update();
-	draw();
-	window.requestAnimationFrame(loop, canvas);
 }
 
 // CONTROL the piece
