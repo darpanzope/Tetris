@@ -5,14 +5,14 @@ const scoreElement = document.getElementById("score");
 const ROW = 20;
 const COL = COLUMN = 10;
 const SQ = squareSize = 20;
-const VACANT = "GAINSBORO"; // color of an empty square
+const VACANT = "LINEN"; // color of an empty square
 
 // draw a square
 function drawSquare(x,y,color){
 	ctx.fillStyle = color;
   ctx.fillRect(x*SQ,y*SQ,SQ,SQ);
 
-  ctx.strokeStyle = "GREY";
+  ctx.strokeStyle = "BLACK";
   ctx.strokeRect(x*SQ,y*SQ,SQ,SQ);
 }
 
@@ -44,8 +44,8 @@ const PIECES = [Z,S,T,O,L,I,J];
 // generate random pieces
 
 function randomPiece(){
-  let r = randomN = Math.floor(Math.random() * PIECES.length) // 0 -> 6
-  return new Piece( PIECES[r],"red");
+	let r = randomN = Math.floor(Math.random() * PIECES.length) // 0 -> 6
+  return new Piece( PIECES[r],'#'+Math.random().toString(16).substr(-6));
 }
 
 let p = randomPiece();
@@ -227,12 +227,19 @@ Piece.prototype.collision = function(x,y,piece){
   return false;
 }
 
+function loop() {
+	if (gamePaused) return; // <--- stop looping
+	update();
+	draw();
+	window.requestAnimationFrame(loop, canvas);
+}
+
 // CONTROL the piece
 
 document.addEventListener("keydown",CONTROL);
 
 function CONTROL(event){
-  if(event.keyCode == 37){
+	if(event.keyCode == 37){
 		p.moveLeft();
 		dropStart = Date.now();
   }else if(event.keyCode == 38){
@@ -243,7 +250,7 @@ function CONTROL(event){
 		dropStart = Date.now();
   }else if(event.keyCode == 40){
 		p.moveDown();
-  }
+	}
 }
 
 // drop the piece every 1sec
