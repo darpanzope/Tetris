@@ -7,6 +7,8 @@ const COL = COLUMN = 10;
 const SQ = squareSize = 20;
 const VACANT = "LINEN"; // color of an empty square
 
+document.getElementById("gameover").style.display="none"; // Hide game over span
+
 // draw a square
 
 function drawSquare(x,y,color){
@@ -165,7 +167,11 @@ Piece.prototype.lock = function(){
 			}
 			// pieces to lock on top = game over
 			if(this.y + r < 0){
-				alert("Game Over");
+				document.getElementById("main").style.display="none";
+        document.getElementById("tetris").style.display="none";
+				document.getElementById("res").style.display="none";
+				document.getElementById("heading").style.display="none";
+        document.getElementById("gameover").style.display="inline";
 				// stop request animation frame
 				gameOver = true;
 				break;
