@@ -255,6 +255,8 @@ function CONTROL(event){
 		dropStart = Date.now();
   }else if(event.keyCode == 40){ // keyCode 40 = Down arrow key
 		p.moveDown();
+	}else if(event.keyCode == 32){ // keyCode 32 = Space bar key
+		alert("Game Paused \n\n\nPress ok to resume");
 	}
 }
 
